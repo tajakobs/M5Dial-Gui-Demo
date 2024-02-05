@@ -1,4 +1,3 @@
-
 // Include this to enable the M5 global instance.
 #include <M5Unified.h>
 
@@ -8,6 +7,9 @@
 #include "esp_lvgl_port.h"
 #include "lvgl.h"
 #include "lv_example_pub.h"
+
+//#define LV_CONF_INCLUDE_SIMPLE
+#define LV_LVGL_H_INCLUDE_SIMPLE 
 
 static const char *TAG = "main";
 
@@ -20,7 +22,7 @@ static lv_color_t buf[screenWidth * screenHeight / 10];
 uint32_t startTime, frame = 0;  // For frames-per-second estimate
 char info_temp[100] = {0};
 
-/*Read the touchpad*/
+///*Read the touchpad*/c:\Users\thoma\Documents\GitHub\M5Dial-Gui-Demo\components\lv_conf.h
 void my_touchpad_read(lv_indev_drv_t *indev_driver, lv_indev_data_t *data) {
     auto pos     = M5.Touch.getTouchPointRaw();
     bool touched = (pos.x == -1) ? false : true;
@@ -41,18 +43,18 @@ void my_encoder_read(lv_indev_drv_t *indev_driver, lv_indev_data_t *data) {
     int32_t encoder_diff = 0;
     M5.update();
     if (M5.BtnA.wasPressed()) {
-        button_status = LV_INDEV_STATE_PRESSED;  // 按下
+        button_status = LV_INDEV_STATE_PRESSED;  // æŒ‰ä¸‹
     } else {
-        button_status = LV_INDEV_STATE_RELEASED;  // 松开
+        button_status = LV_INDEV_STATE_RELEASED;  // æ¾å¼€
     }
 
     // printf("btn %d\r\n", button_status);
     // int KEY_VAL = enc.value();
-    // if (KEY_VAL < 0)  // 编码器左转
+    // if (KEY_VAL < 0)  // ç¼–ç å™¨å·¦è½¬
     // {
     //     encoder_diff--;
     //     but_flag = false;
-    // } else if ((KEY_VAL > 0))  // 编码器右转
+    // } else if ((KEY_VAL > 0))  // ç¼–ç å™¨å³è½¬
     // {
     //     encoder_diff++;
     //     but_flag = false;
